@@ -1,0 +1,39 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme"
+        parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Toolbar theme. -->
+    <style name="ToolBarStyle" parent="AppTheme">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <style name="defaultTextView" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="frag1TableLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="frag1HeaderTableRow" parent="frag1TableLayout">
+        <item name="android:layout_marginBottom">3dp</item>
+    </style>
+    <style name="frag1TableRow" parent="frag1TableLayout">
+    </style>
+    <style name="frag1Col" parent="defaultTextView">
+        <item name="android:layout_marginBottom">1dp</item>
+    </style>
+    <style name="frag1HeaderCol" parent="frag1Col">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

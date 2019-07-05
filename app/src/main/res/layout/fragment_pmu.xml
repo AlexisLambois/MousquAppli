@@ -8,15 +8,18 @@
     android:gravity="center"
     android:background="#EDD9CF">
 
-    <TextView
-        android:id="@+id/fragment_page_news_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dip"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="#fff"
-        android:textAlignment="center"
-        android:text="Nous pourrions afficher un fil d'actualité ici non ?"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
+        <TableLayout
+            android:id="@+id/tableInvoices"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="0dp"
+            android:stretchColumns="*"
+            >
+        </TableLayout>
+
+    </ScrollView>
 </LinearLayout>

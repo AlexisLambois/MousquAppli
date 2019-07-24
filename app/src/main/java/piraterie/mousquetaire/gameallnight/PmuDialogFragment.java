@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 
 public class PmuDialogFragment extends DialogFragment {
 
@@ -18,18 +20,24 @@ public class PmuDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the dialog layout
+
         builder.setView(inflater.inflate(R.layout.fragment_pmu_dialog, null))
                 // Add action buttons
                 .setPositiveButton("Ajouter", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         EditText editText = (EditText) getDialog().findViewById(R.id.username);
-                        EditText editText = (EditText) getDialog().findViewById(R.id.username);
-                        EditText editText = (EditText) getDialog().findViewById(R.id.username);
                     }
                 });
         return builder.create();
+    }
+
+    @Override
+    public void onStart (){
+        super.onStart();
+        NumberPicker np = (NumberPicker) getDialog().findViewById(R.id.numberPicker1);
+        np.setMinValue(0);
+        np.setMaxValue(50);
+        np.setWrapSelectorWheel(true);
     }
 }

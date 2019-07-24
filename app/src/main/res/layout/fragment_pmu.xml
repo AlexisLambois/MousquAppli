@@ -1,25 +1,28 @@
-<LinearLayout
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_news_rootview"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="piraterie.mousquetaire.gameallnight.PMU"
-    android:gravity="center"
     android:background="#EDD9CF">
 
-    <ScrollView
+    <TableLayout
+        android:id="@+id/tableInvoices"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:padding="0dp"
+        android:stretchColumns="*"></TableLayout>
 
-        <TableLayout
-            android:id="@+id/tableInvoices"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="0dp"
-            android:stretchColumns="*"
-            >
-        </TableLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/round_add_circle_black_36" />
 
-    </ScrollView>
-</LinearLayout>
+</RelativeLayout>

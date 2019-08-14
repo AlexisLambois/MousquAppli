@@ -1,12 +1,19 @@
 package piraterie.mousquetaire.gameallnight;
 
+import android.animation.Animator;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +24,7 @@ import java.util.List;
 public class Bus extends Fragment {
 
     private ImageView imageView;
-    private Button button;
+    private TextView text;
     private Button refresh;
     private View rootView;
     private Integer index;
@@ -52,28 +59,61 @@ public class Bus extends Fragment {
 
         imageView = rootView.findViewById(R.id.imageView);
 
-        button = rootView.findViewById(R.id.button2);
+        text = rootView.findViewById(R.id.button2);
         refresh = rootView.findViewById(R.id.button3);
 
         shuffledCards = new ArrayList<>(Arrays.asList(images));
 
         init();
 
-        button.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (!iter.hasNext() || index == 0) {
                     return;
                 }
-                index--;
-                image = iter.next();
-                imageView.setImageResource(image);
-                button.invalidate();
-                if (index == 0) {
-                    button.setText("Bien joué !!");
-                } else {
-                    button.setText("Tirer (" + index + ")");
-                }
+                ViewPropertyAnimator animation = imageView.animate();
+                animation.rotationYBy(180).setDuration(500).setInterpolator(new LinearInterpolator());
+                animation.setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animator) {
+                        imageView.setImageResource(R.drawable.back);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        index--;
+                        image = iter.next();
+                        imageView.setRotationY(360);
+                        imageView.setImageResource(image);
+                        //button.invalidate();
+                        if (index == 0) {
+                            text.setText("Bien joué !!");
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if(index == 0){
+                                        imageView.setImageResource(R.drawable.thelegendaryexodiaincarnate);
+                                    }
+                                }
+                            }, 5000);
+                        } else {
+                            text.setText("Plus que " + index + " carte(s)");
+                        }
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animator) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animator) {
+
+                    }
+                });
+                animation.start();
             }
         });
 
@@ -90,9 +130,9 @@ public class Bus extends Fragment {
     private void init() {
         Collections.shuffle(shuffledCards);
         iter = shuffledCards.iterator();
-        index = 10;
+        index = 5;
         imageView.setImageResource(R.drawable.back);
-        button.setText("Tirer (" + index + ")");
+        text.setText("Plus que " + index + " carte(s)");
     }
 
 }

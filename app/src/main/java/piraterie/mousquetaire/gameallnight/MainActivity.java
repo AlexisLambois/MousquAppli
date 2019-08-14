@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
 
     private Fragment fragmentPMU;
+    private Fragment fragmentBus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id) {
             case R.id.activity_main_drawer_1:
                 this.showPMUFragment();
+                break;
+            case R.id.activity_main_drawer_2:
+                this.showBusFragment();
                 break;
             case R.id.activity_main_drawer_settings:
                 break;
@@ -98,6 +102,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void showPMUFragment(){
         if (this.fragmentPMU == null) this.fragmentPMU = PMU.newInstance();
         this.startTransactionFragment(this.fragmentPMU);
+    }
+
+    private void showBusFragment(){
+        if (this.fragmentBus == null) this.fragmentBus = Bus.newInstance();
+        this.startTransactionFragment(this.fragmentBus);
     }
 
     // ---
